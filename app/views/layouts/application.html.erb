@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="antialiased">
   <head>
     <title>CovidBackend</title>
     <%= csrf_meta_tags %>
@@ -7,9 +7,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
   </head>
 
   <body>
+    <section>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </section>
+
     <%= yield %>
   </body>
 </html>
