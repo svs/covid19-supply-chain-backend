@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  # root 'pages#index'
+  get '/login', to: 'pages#index'
   
   get '*page', to: 'static#index', constraints: ->(req) do
     !req.xhr? && req.format.html?
