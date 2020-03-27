@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: availability_reports
+#
+#  id         :bigint           not null, primary key
+#  user_id    :integer
+#  location   :jsonb
+#  lat        :float
+#  lon        :float
+#  status     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class AvailabilityReport < ApplicationRecord
 
   validates_presence_of :lat

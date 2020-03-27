@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: identities
+#
+#  id         :bigint           not null, primary key
+#  uid        :string
+#  provider   :string
+#  user_id    :bigint           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Identity < ApplicationRecord
   belongs_to :user
 
