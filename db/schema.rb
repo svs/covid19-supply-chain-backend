@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_035842) do
+ActiveRecord::Schema.define(version: 2020_03_26_093226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.integer "availability_report_id"
+    t.text "item"
+    t.integer "availability"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "availability_reports", force: :cascade do |t|
+    t.integer "user_id"
+    t.jsonb "location"
+    t.float "lat"
+    t.float "lon"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "identities", force: :cascade do |t|
     t.string "uid"

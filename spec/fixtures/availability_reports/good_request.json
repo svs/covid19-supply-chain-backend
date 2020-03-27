@@ -1,0 +1,11 @@
+{
+
+    "lat": 19.72,
+    "lon": 20.13,
+    "availabilities_attributes": [
+	{
+	    "item": "potato",
+	    "availability": 3
+	}
+    ]
+}
