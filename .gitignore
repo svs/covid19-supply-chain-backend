@@ -71,3 +71,6 @@ yarn-debug.log*
 
 
 .env
+
+.generators
+.idea
