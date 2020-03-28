@@ -5,3 +5,9 @@
 - `bundle install`
 - `cp .env.example .env` and place all the variable values
 - `rails db:setup`
+
+### Docker Setup
+
+- `cp .env.example .env` and place all the variable values
+- `docker-compose run web rails db:setup`
+- `docker-compose up -d`
