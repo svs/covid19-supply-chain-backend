@@ -9,18 +9,35 @@ services:
 
   web:
     build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - "3000:3000"
-      - "3035:3035"
     depends_on:
       - db
     environment:
       DATABSE_HOST: db
       DATABSE_USER: postgres
       DATABSE_PASS: postgres
+      WEBPACKER_DEV_SERVER_HOST: webpacker
+
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
+    volumes:
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3035:3035"
+    depends_on:
+      - db
+    environment:
+       NODE_ENV: development
+       RAILS_ENV: development
+       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
 
 volumes:
   covid_backend:
