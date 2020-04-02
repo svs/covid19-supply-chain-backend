@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'omniauth-twitter'
+gem 'shrine', '~> 3.2.1'
 
 
 group :development, :test do
