@@ -8,6 +8,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "antd": "^4.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "final-form": "^4.19.1",
     "final-form-arrays": "^3.0.2",
