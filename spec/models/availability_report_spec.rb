@@ -3,13 +3,14 @@
 # Table name: availability_reports
 #
 #  id         :bigint           not null, primary key
-#  user_id    :integer
-#  location   :jsonb
 #  lat        :float
+#  location   :jsonb
 #  lon        :float
 #  status     :integer
+#  store_name :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 require 'rails_helper'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_093226) do
+ActiveRecord::Schema.define(version: 2020_04_02_103514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_093226) do
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "store_name"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -50,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_03_26_093226) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.bigint "availability_report_id", null: false
+    t.jsonb "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["availability_report_id"], name: "index_photos_on_availability_report_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
@@ -64,4 +73,5 @@ ActiveRecord::Schema.define(version: 2020_03_26_093226) do
   end
 
   add_foreign_key "identities", "users"
+  add_foreign_key "photos", "availability_reports"
 end

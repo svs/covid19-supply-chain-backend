@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :photo do
+    availability_report { nil }
+    image_data { "" }
+  end
+
   sequence :email do |n|
     "test#{n}@foo.com"
   end
