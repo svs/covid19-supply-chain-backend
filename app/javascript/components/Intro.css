@@ -13,3 +13,11 @@
 .Intro__item {
   height: var(--height);
 } 
+
+.Intro__carousel .slick-dots li button {
+  background-color: #91d5ff !important;
+}
+
+.Intro__carousel .slick-dots li.slick-active button {
+  background-color: #1890ff !important;
+}

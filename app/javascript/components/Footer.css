@@ -4,3 +4,13 @@
   align-items: center;
   background-color:#fafafa !important;
 }
+
+@media screen and (max-width: 580px) {
+  .Footer {
+    flex-wrap: wrap;
+  }
+  
+  .Footer > * {
+    flex-basis: 100%;
+  }
+}
