@@ -1,10 +1,10 @@
 import React from "react"
-import PropTypes from "prop-types"
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './Home'
 
+import 'antd/dist/antd.css';
 
 class App extends React.Component {
   render () {
