@@ -1,0 +1,14 @@
+.Intro {
+  padding: var(--gutter-size);
+  background-color: #f5f5f5;
+}
+
+.Intro__carousel {
+  --height: 400px;
+
+  height: var(--height);
+}
+
+.Intro__item {
+  height: var(--height);
+} 

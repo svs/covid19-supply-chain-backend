@@ -5,6 +5,10 @@ div[data-react-class="App"] {
   height: 100%;
 }
 
+:root {
+  --gutter-size: 20px;
+}
+
 /* rails alerts */
 .notice,
 .alert {
