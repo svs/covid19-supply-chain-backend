@@ -10,10 +10,12 @@ const { Text } = Typography
 const FooterComp = ({ children }) => {
     return (
         <Footer className="Footer">
-            <Button type="link" href="https://discord.gg/j7Wjg7c">
-                <DiscordIcon style={{ width: '16px', height: '16px' }} />Join Discord Chat
-            </Button>
-            <Text>Made with clean hands 🙌 working from home 🏠</Text>
+            <div className="Footer__container">
+                <Button type="link" href="https://discord.gg/j7Wjg7c">
+                    <DiscordIcon style={{ width: '16px', height: '16px' }} />Join Discord Chat
+                </Button>
+                <Text>Made with clean hands 🙌 working from home 🏠</Text>
+            </div>
         </Footer>
     );
 }
