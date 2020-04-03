@@ -25,4 +25,6 @@ class AvailabilityReport < ApplicationRecord
   validates_presence_of :availabilities
   accepts_nested_attributes_for :availabilities
 
+  has_many :photos
+
 end
