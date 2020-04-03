@@ -4,7 +4,7 @@
 }
 
 .Intro__carousel {
-  --height: 400px;
+  --height: 250px;
 
   height: var(--height);
 }
