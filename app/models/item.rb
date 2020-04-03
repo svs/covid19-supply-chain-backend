@@ -10,4 +10,5 @@
 #  updated_at :datetime         not null
 #
 class Item < ApplicationRecord
+  self.inheritance_column = :_type_disabled
 end
