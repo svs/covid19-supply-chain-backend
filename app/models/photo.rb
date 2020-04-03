@@ -17,5 +17,6 @@
 #  fk_rails_...  (availability_report_id => availability_reports.id)
 #
 class Photo < ApplicationRecord
+  include PhotoUploader::Attachment.new(:image)
   belongs_to :availability_report
 end
