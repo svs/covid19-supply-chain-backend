@@ -18,12 +18,12 @@ const Intro = () => {
                 We will get through COVID-19 but an essential part of that is having a working supply chain for essentials. 
                 And if we can't visualise the supply chain and build tools to manage demand and supply it is quite likely 
                 that we find out about breakages too late with the attendant risks of hunger, 
-                lack of medical supplies and social unrest.
+                lack of medical supplies and social unrest. This app tries to achieve this by
             </Text>
             <Carousel 
                 className="Intro__carousel" 
                 autoplay 
-                autoplaySpeed={5000} 
+                autoplaySpeed={8000} 
                 dotsClass="Intro__dot" 
                 dotPosition='bottom'
             >

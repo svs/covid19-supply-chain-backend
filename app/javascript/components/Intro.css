@@ -12,6 +12,7 @@
 
 .Intro__item {
   height: var(--height);
+  text-align: center;
 } 
 
 .Intro__carousel .slick-dots li button {

@@ -8,7 +8,7 @@ const HeaderComp = ({ children }) => {
         <PageHeader
             className="Header"
             // avatar={{ src: 'https://svgshare.com/i/Jht.svg'}} 
-            title="C19 Supply Chain Tracker"
+            title="Covid19 Supply Chain Tracker"
         />
     );
 }
