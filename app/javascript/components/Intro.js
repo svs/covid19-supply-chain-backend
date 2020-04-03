@@ -1,16 +1,28 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Layout } from 'antd'
+import { Carousel } from 'antd'
 
-const { Header, Footer, Sider, Content } = Layout;
-
-const Intro = ({ children }) => {
+const Intro = () => {
     return (
         <>
-            <h1>Intro will come here</h1>
+            <Carousel autoplay dotPosition='bottom'>
+                <div>
+                    <h3>1</h3>
+                </div>
+                <div>
+                    <h3>2</h3>
+                </div>
+                <div>
+                    <h3>3</h3>
+                </div>
+                <div>
+                    <h3>4</h3>
+                </div>
+            </Carousel>
             <h1>may be login button too</h1>
         </>
         );
-}
-
-export default Intro;
+    }
+    
+    export default Intro;
+    
