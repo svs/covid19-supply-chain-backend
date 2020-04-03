@@ -1,10 +1,24 @@
-import React from "react";
+import React from 'react';
 import { Select } from 'antd';
 
-const EssentialsSelect = (field) => {
+import essentials from '../../constants/json/essentials.json';
+
+const { OptGroup, Option } = Select;
+
+const renderOptGroup = (group) => (
+  <OptGroup label={group[0]}>
+    { group[1].map(option => <Option value={option}>{option}</Option>)}
+  </OptGroup>
+);
+
+const EssentialsSelect = () => {
   return (
-    <div>TEST</div>
+    <Select placeholder="Essential" style={{ margin: '5px', width: 200 }} >
+      {
+        Object.entries(essentials).map(group => renderOptGroup(group))
+      }
+  </Select>
   )
 };
 
-return EssentialsSelect;
+export default EssentialsSelect;

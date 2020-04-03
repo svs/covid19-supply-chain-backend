@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { Typography, Form, Input, Select, Button, Row, Col } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
+import EssentialsSelect from './EssentialsSelect';
 import stockStatuses from '../../constants/json/stockStatuses.json';
 
 // FIXME: import from common local config
@@ -73,7 +74,7 @@ const AvailabilityReport = () => {
                       fieldKey={[field.fieldKey, "essential"]}
                       rules={rules}
                     >
-                      <Input placeholder="Essential" />
+                      <EssentialsSelect />
                     </Item>
                   </Col>
                   <Col>
@@ -82,7 +83,7 @@ const AvailabilityReport = () => {
                       fieldKey={[field.fieldKey, "stockStatus"]}
                       rules={rules}
                     >
-                      <Select placeholder="Stock Status">
+                      <Select style={{ margin: '5px', width: '300px'}} placeholder="Stock Status">
                         {stockStatuses.map(s => (
                           <Option key={s}>{s}</Option>
                         ))}
@@ -91,6 +92,7 @@ const AvailabilityReport = () => {
                   </Col>
                   <Col flex="none">
                     <MinusCircleOutlined
+                      style={{ verticalAlign: 'center', margin: '10px'}}
                       onClick={() => {
                         remove(field.name);
                       }}
