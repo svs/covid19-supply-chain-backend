@@ -7,8 +7,10 @@ import './Intro.css';
 const { Text, Paragraph } = Typography;
 
 const iconStyles = {
-    width: '128px',
+    minWidth: '128px',
     height: '128px',
+    maxWidth: '360px',
+    overflow: 'hidden'
 }
 
 const Intro = () => {
@@ -23,6 +25,7 @@ const Intro = () => {
             <Carousel 
                 className="Intro__carousel" 
                 autoplay 
+                // initialSlide={2}
                 autoplaySpeed={8000} 
                 dotsClass="Intro__dot" 
                 dotPosition='bottom'
