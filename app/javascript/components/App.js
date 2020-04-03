@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import HelloWorld from './HelloWorld'
+import Home from './Home'
 
 
 class App extends React.Component {
@@ -11,8 +11,7 @@ class App extends React.Component {
     return (
         <Router>
           <Switch>
-            <Route exact path="/" render={() => ("Home!")} />
-            <Route exact path="/hello" render={() => <HelloWorld greeting="Friend" />} />
+            <Route path="/" component={Home} />
           </Switch>
         </Router> 
     );
