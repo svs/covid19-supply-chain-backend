@@ -3,6 +3,11 @@
   background-color: #f5f5f5;
 }
 
+.Intro__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
 .Intro__carousel {
   --height: 250px;
 

@@ -1,16 +1,21 @@
 .Footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color:#fafafa !important;
 }
 
+.Footer .Footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 580px) {
-  .Footer {
+  .Footer__container {
     flex-wrap: wrap;
   }
-  
-  .Footer > * {
+
+  .Footer__container > * {
     flex-basis: 100%;
   }
 }

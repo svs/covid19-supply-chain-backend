@@ -1,3 +1,8 @@
 .Header {
   background-color: #fafafa !important;
 }
+
+.Header .ant-page-header-heading {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}

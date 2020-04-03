@@ -1,0 +1,10 @@
+.AvailabilityReport {
+  padding: var(--gutter-size);
+  background-color:#fafafa !important;
+}
+
+.AvailabilityReport__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
