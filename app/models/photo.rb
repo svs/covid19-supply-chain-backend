@@ -18,5 +18,5 @@
 #
 class Photo < ApplicationRecord
   include PhotoUploader::Attachment.new(:image)
-  belongs_to :availability_report
+  belongs_to :availability_report, optional: true
 end
