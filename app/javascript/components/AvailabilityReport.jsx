@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import { Typography, Form, Input, Select, Button, Row, Col } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Typography, Form, Input, Select, Button, Row, Col, Space } from 'antd';
+import { MinusCircleTwoTone, PlusOutlined } from '@ant-design/icons';
 
 import EssentialsSelect from './EssentialsSelect';
 import './AvailabilityReport.css';
@@ -13,15 +13,6 @@ const DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED = 3;
 const { Title, Paragraph } = Typography;
 const { useForm, Item, List } = Form;
 const { Option } = Select;
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 const rules = [{ required: true }];
 
@@ -52,16 +43,17 @@ const AvailabilityReport = () => {
     <section className='AvailabilityReport'>
       <div className="AvailabilityReport__container">
         <Title level={4}>Report Essential Goods Availability</Title>
-        <Paragraph>Help everyone by reporting availability of essential goods when you shop.</Paragraph>
-        <Form {...layout} form={form} name="availibility-report" onFinish={onFinish}>
+        <Paragraph gutterBottom>Help everyone by reporting availability of essential goods when you shop.</Paragraph>
+        <Form form={form} name="availibility-report" className="AvailabilityReport__form" onFinish={onFinish}>
           <Item
+            className="AvailabilityReport__store-col"
             name="storeName" 
             label="Store Name" 
-            rules={[{ required: true, message: 'Please input the store name!'}]}
+            rules={[{ required: false, message: 'Please input the store name!'}]}
           >
-            <Input size="middle"/>
+            <Input size="middle" placeholder="Enter name (Optional)" />
           </Item>
-          <List {...tailLayout} name="essentialsStockStatus">
+          <List name="essentialsStockStatus">
             {(fields, { add, remove }) => {
               /**
                * `fields` internal fill with `name`, `key`, `fieldKey` props.
@@ -69,9 +61,10 @@ const AvailabilityReport = () => {
                */
 
               return (
-                <div>
-                  {fields.map((field, index) => (
                 <>
+                  {fields.map((field, index) => (
+                    <Item label={`Item ${index + 1}`} className="AvailabilityReport__list-item">
+                      <Space size="large">
                         <Item
                           name={[field.name, "essential"]}
                           fieldKey={[field.fieldKey, "essential"]}
@@ -85,40 +78,39 @@ const AvailabilityReport = () => {
                           fieldKey={[field.fieldKey, "stockStatus"]}
                           rules={rules}
                         >
-                          <Select placeholder="Stock Status">
+                          <Select placeholder="Select Availability">
                             {stockStatuses.map(s => (
                               <Option key={s}>{s}</Option>
                             ))}
                           </Select>
                         </Item>
-                     
-                        <MinusCircleOutlined
+                        <MinusCircleTwoTone
+                          color="red"
+                          twoToneColor="#eb2f96"
+                          className="AvailabilityReport__remove-icon"
                           onClick={() => {
                             remove(field.name);
                           }}
                         />
-                     </>
+                      </Space>
+                    </Item>
                   ))}
-                  <Item>
-                    <Button
-                      type="dashed"
-                      onClick={() => {
-                        add();
-                      }}
-                      style={{ width: "100%" }}
-                    >
-                      <PlusOutlined /> Add field
-                    </Button>
-                  </Item>
-                </div>
+                  <Button
+                    className="AvailabilityReport__add-btn"
+                    type="dashed"
+                    onClick={() => {
+                      add();
+                    }}
+                  >
+                    <PlusOutlined /> Add Item
+                  </Button>
+                </>
               );
             }}
           </List>
-          <Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Item>
+          <Button className="AvailabilityReport__submit-btn" type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Form>
       </div>
     </section>
