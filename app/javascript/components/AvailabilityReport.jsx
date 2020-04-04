@@ -98,7 +98,7 @@ const AvailabilityReport = () => {
                         >
                           <Select placeholder="Select Availability">
                             {stockStatuses.map(s => (
-                              <Option key={s}>{s}</Option>
+                              <Option value={s} key={s}>{s}</Option>
                             ))}
                           </Select>
                         </Item>

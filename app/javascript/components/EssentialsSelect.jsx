@@ -13,7 +13,7 @@ const renderOptGroup = (group) => (
 
 const EssentialsSelect = () => {
   return (
-    <Select placeholder="Select Item" style={{ margin: '5px', width: 200 }} >
+    <Select placeholder="Select Item">
       {
         Object.entries(essentials).map(group => renderOptGroup(group))
       }
