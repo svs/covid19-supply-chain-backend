@@ -8,7 +8,8 @@ const LoginAndSubmitBtn = () => {
 
   const onClickHandler = () => {
     setIsLoggingIn(true);
-    setSubmitText('Waiting for login...')
+    setSubmitText('Waiting for login...');
+    window.open('/user/auth/twitter', 'signup', 'toolbar=no, menubar=no, width=500, height=800, top=100, left=100');
   };
 
   return (
