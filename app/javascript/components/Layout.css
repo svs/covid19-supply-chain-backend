@@ -1,8 +1,0 @@
-.Layout {
-  height: 100%;
-}
-
-.Layout__content {
-  flex: 1;
-  overflow: auto;
-} 

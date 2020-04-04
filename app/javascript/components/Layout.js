@@ -9,9 +9,9 @@ const { Content } = Layout;
 
 const LayoutComp = ({ children }) => {
     return (
-        <Layout className="Layout">
+        <Layout>
             <Header />
-            <Content className="Layout__content">{children}</Content>
+            <Content>{children}</Content>
             <Footer />
         </Layout>
     );

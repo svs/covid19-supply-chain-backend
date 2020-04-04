@@ -21,6 +21,7 @@
 } 
 
 .Intro__carousel .slick-dots li button {
+  height: 5px;
   background-color: #91d5ff !important;
 }
 
