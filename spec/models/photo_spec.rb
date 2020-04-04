@@ -6,7 +6,7 @@
 #  image_data             :jsonb
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  availability_report_id :bigint           not null
+#  availability_report_id :bigint
 #
 # Indexes
 #

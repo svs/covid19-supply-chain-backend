@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_103514) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.bigint "availability_report_id", null: false
+    t.bigint "availability_report_id"
     t.jsonb "image_data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
