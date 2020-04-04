@@ -15,8 +15,9 @@
   text-align: left;
 }
 
-.AvailabilityReport .AvailabilityReport__store-col {
-  padding-left: 5px;
+.AvailabilityReport__store-name,
+.AvailabilityReport__store-location {
+  padding-left: 5px !important;
 }
 
 .AvailabilityReport__list-item {
@@ -30,7 +31,9 @@
 
 .AvailabilityReport__container .ant-form-item-label,
 .AvailabilityReport__container .ant-select,
-.AvailabilityReport__container input {
+.AvailabilityReport__container .ant-form-item-control-input-content > input,
+.AvailabilityReport__container .ant-input-group-wrapper
+ {
   width: var(--label-size) !important;
 }
 

@@ -3,6 +3,7 @@ import { Typography, Form, Input, Select, Button, Row, Col, Space } from 'antd';
 import { MinusCircleTwoTone, PlusOutlined } from '@ant-design/icons';
 
 import EssentialsSelect from './EssentialsSelect';
+import LocationInput from './LocationInput';
 import './AvailabilityReport.css';
 
 import stockStatuses from '../../constants/json/stockStatuses.json';
@@ -43,15 +44,23 @@ const AvailabilityReport = () => {
     <section className='AvailabilityReport'>
       <div className="AvailabilityReport__container">
         <Title level={4}>Report Essential Goods Availability</Title>
-        <Paragraph gutterBottom>Help everyone by reporting availability of essential goods when you shop.</Paragraph>
+        <Paragraph>Help everyone by reporting availability of essential goods when you shop.</Paragraph>
         <Form form={form} name="availibility-report" className="AvailabilityReport__form" onFinish={onFinish}>
           <Item
-            className="AvailabilityReport__store-col"
+            className="AvailabilityReport__store-name"
             name="storeName" 
             label="Store Name" 
             rules={[{ required: false, message: 'Please input the store name!'}]}
           >
             <Input size="middle" placeholder="Enter name (Optional)" />
+          </Item>
+          <Item
+            className="AvailabilityReport__store-location"
+            name="location"
+            label="Store Location"
+            rules={[{ required: true, message: 'Please add store location' }]}
+          >
+            <LocationInput />
           </Item>
           <List name="essentialsStockStatus">
             {(fields, { add, remove }) => {
@@ -86,7 +95,7 @@ const AvailabilityReport = () => {
                         </Item>
                         <MinusCircleTwoTone
                           color="red"
-                          twoToneColor="#eb2f96"
+                          twoToneColor="#f5222d"
                           className="AvailabilityReport__remove-icon"
                           onClick={() => {
                             remove(field.name);
