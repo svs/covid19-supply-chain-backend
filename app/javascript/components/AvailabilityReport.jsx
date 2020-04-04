@@ -5,6 +5,7 @@ import { MinusCircleTwoTone, PlusOutlined } from '@ant-design/icons';
 import EssentialsSelect from './EssentialsSelect';
 import LocationInput from './LocationInput';
 import PhotoInput from './PhotoInput';
+import LoginAndSubmitBtn from './LoginAndSubmitBtn';
 import './AvailabilityReport.css';
 
 import stockStatuses from '../../constants/json/stockStatuses.json';
@@ -96,7 +97,7 @@ const AvailabilityReport = () => {
                           fieldKey={[field.fieldKey, "stockStatus"]}
                           rules={rules}
                         >
-                          <Select placeholder="Select Availability">
+                          <Select placeholder="Select Availability" style={{ width: '215px' }}>
                             {stockStatuses.map(s => (
                               <Option value={s} key={s}>{s}</Option>
                             ))}
@@ -126,9 +127,7 @@ const AvailabilityReport = () => {
               );
             }}
           </List>
-          <Button className="AvailabilityReport__submit-btn" type="primary" htmlType="submit">
-            Submit
-          </Button>
+          <LoginAndSubmitBtn />
         </Form>
       </div>
     </section>
