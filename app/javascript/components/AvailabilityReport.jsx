@@ -4,6 +4,7 @@ import { MinusCircleTwoTone, PlusOutlined } from '@ant-design/icons';
 
 import EssentialsSelect from './EssentialsSelect';
 import LocationInput from './LocationInput';
+import PhotoInput from './PhotoInput';
 import './AvailabilityReport.css';
 
 import stockStatuses from '../../constants/json/stockStatuses.json';
@@ -61,6 +62,14 @@ const AvailabilityReport = () => {
             rules={[{ required: true, message: 'Please add store location' }]}
           >
             <LocationInput />
+          </Item>
+          <Item
+            className="AvailabilityReport__photo-input"
+            name="photos"
+            label="Store photos"
+            rules={[{ required: false, message: 'Please add store photos' }]}
+          >
+            <PhotoInput />
           </Item>
           <List name="essentialsStockStatus">
             {(fields, { add, remove }) => {
