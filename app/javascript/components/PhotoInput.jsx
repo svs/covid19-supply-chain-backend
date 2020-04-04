@@ -17,13 +17,13 @@ const FILE_LIST = [
     uid: '-1',
     name: 'image.png',
     status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    url: 'https://c8.alamy.com/comp/GP025K/indian-food-market-in-bangalore-karnataka-india-GP025K.jpg',
   },
   {
     uid: '-4',
     name: 'image.png',
     status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    url: 'https://media.istockphoto.com/photos/grocery-shop-in-little-india-singapore-picture-id919763140',
   },
   {
     uid: '-5',
