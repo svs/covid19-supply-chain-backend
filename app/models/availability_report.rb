@@ -17,8 +17,8 @@ class AvailabilityReport < ApplicationRecord
   validates_presence_of :lat
   validates_presence_of :lon
 
-  validates_numericality_of :lat
-  validates_numericality_of :lon
+  validates_numericality_of :lat, allow_nil: true
+  validates_numericality_of :lon, allow_nil: true
 
   belongs_to :user
   has_many :availabilities
