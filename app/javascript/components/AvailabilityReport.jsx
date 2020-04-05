@@ -127,7 +127,7 @@ const AvailabilityReport = () => {
               );
             }}
           </List>
-          <LoginAndSubmitBtn />
+          <LoginAndSubmitBtn form={form} />
         </Form>
       </div>
     </section>
