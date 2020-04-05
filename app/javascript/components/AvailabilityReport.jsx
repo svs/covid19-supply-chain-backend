@@ -29,6 +29,7 @@ const AvailabilityReport = () => {
     fetch('/api/availability_reports', {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(form.getFieldsValue(true)) 
