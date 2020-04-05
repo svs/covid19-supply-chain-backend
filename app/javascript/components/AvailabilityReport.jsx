@@ -17,7 +17,7 @@ const { Title, Paragraph } = Typography;
 const { useForm, Item, List } = Form;
 const { Option } = Select;
 
-const rules = [{ required: true }];
+const rules = [{ required: false }];
 
 const AvailabilityReport = () => {
   const [ form ] = useForm();
@@ -60,7 +60,7 @@ const AvailabilityReport = () => {
             className="AvailabilityReport__store-location"
             name="location"
             label="Store Location"
-            rules={[{ required: true, message: 'Please add store location' }]}
+            rules={[{ required: false, message: 'Please add store location' }]}
           >
             <LocationInput />
           </Item>

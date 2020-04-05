@@ -12,7 +12,19 @@ const LoginAndSubmitBtn = ({ form }) => {
       .then(res => res.json())
       .then(res => {
         setIsLoggedIn(res.isLoggedIn);
-        if (!res.isLoggedIn) setSubmitText('Login and Submit');
+        if (!res.isLoggedIn) {
+          setSubmitText('Login and Submit');
+        } else {
+          const values = JSON.parse(localStorage.getItem('availabilityReport'));
+          console.debug({ values })
+          form.setFieldsValue(values);
+          const hasErrors = Object.values(form.getFieldsError()).some(({ errors }) => errors.length);
+          // Note: this implementation assumes that if there are not errors on mount 
+          // then the user has been redirected after login and has already filled form before submit
+          if (!hasErrors) {
+            form.submit();
+          }
+        }
       })
   }, []);
 
@@ -21,7 +33,6 @@ const LoginAndSubmitBtn = ({ form }) => {
       localStorage.setItem('availabilityReport', JSON.stringify(form.getFieldsValue(true)));
       window.location.href = '/users/auth/twitter'
     } else {
-      form.setFieldsValue(JSON.parse(localStorage.getItem('availabilityReport')));
       form.submit();
     }
   };
