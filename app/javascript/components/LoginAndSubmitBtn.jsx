@@ -16,11 +16,12 @@ const LoginAndSubmitBtn = ({ form }) => {
           setSubmitText('Login and Submit');
         } else {
           const values = JSON.parse(localStorage.getItem('availabilityReport'));
-          console.debug({ values })
           form.setFieldsValue(values);
           const hasErrors = Object.values(form.getFieldsError()).some(({ errors }) => errors.length);
           // Note: this implementation assumes that if there are not errors on mount 
           // then the user has been redirected after login and has already filled form before submit
+          // it avoids user having to click the submit button again. This flow is favorable at the moment 
+          // than forcing user to login ever before he fills the form. hence login and submit buttons are combined to one
           if (!hasErrors) {
             form.submit();
           }
@@ -29,12 +30,15 @@ const LoginAndSubmitBtn = ({ form }) => {
   }, []);
 
   const onClickHandler = () => {
-    if (!isLoggedIn) {
-      localStorage.setItem('availabilityReport', JSON.stringify(form.getFieldsValue(true)));
-      window.location.href = '/users/auth/twitter'
-    } else {
-      form.submit();
-    }
+    form.validateFields()
+      .then(values => {
+        if (!isLoggedIn) {
+          localStorage.setItem('availabilityReport', JSON.stringify(form.getFieldsValue(true)));
+          window.location.href = '/users/auth/twitter'
+        } else {
+          form.submit();
+        }
+    })
   };
 
   return (
