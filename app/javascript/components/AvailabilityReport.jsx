@@ -17,15 +17,28 @@ const { Title, Paragraph } = Typography;
 const { useForm, Item, List } = Form;
 const { Option } = Select;
 
-const rules = [{ required: true }];
+const rules = [{ required: false }];
 
 const AvailabilityReport = () => {
   const [ form ] = useForm();
   
   // get location effect?
 
-  const onFinish = useCallback((values) => {
-    console.log(values);
+  const onFinishHander = useCallback((values) => {
+    console.debug('onFinish');
+    fetch('/api/availability_reports', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form.getFieldsValue(true)) 
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.debug({ res });
+      // form.resetFields();
+    })
   }, []);
 
   useEffect(() => {
@@ -47,12 +60,21 @@ const AvailabilityReport = () => {
       <div className="AvailabilityReport__container">
         <Title level={4}>Report Essential Goods Availability</Title>
         <Paragraph>Help everyone by reporting availability of essential goods when you shop.</Paragraph>
-        <Form form={form} name="availibility-report" className="AvailabilityReport__form" onFinish={onFinish}>
+        <Form 
+          form={form} 
+          name="availibility-report" 
+          className="AvailabilityReport__form" 
+          onFinish={onFinishHander} 
+          // TODO: native form submit doesn't seem to be working. Fix and use this if possible
+          // action="/api/availability_reports" 
+          // method="POST"
+          // onSubmitCapture={onSubmitHandler}
+        >
           <Item
             className="AvailabilityReport__store-name"
             name="storeName" 
             label="Store Name" 
-            rules={[{ required: false, message: 'Please input the store name!'}]}
+            rules={[{ required: true, message: 'Please input the store name!'}]}
           >
             <Input size="middle" placeholder="Enter name (Optional)" />
           </Item>
@@ -60,7 +82,7 @@ const AvailabilityReport = () => {
             className="AvailabilityReport__store-location"
             name="location"
             label="Store Location"
-            rules={[{ required: true, message: 'Please add store location' }]}
+            rules={[{ required: false, message: 'Please add store location' }]}
           >
             <LocationInput />
           </Item>
