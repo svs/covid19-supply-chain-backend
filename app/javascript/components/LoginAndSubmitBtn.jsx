@@ -12,7 +12,6 @@ const LoginAndSubmitBtn = ({ form }) => {
       .then(res => res.json())
       .then(res => {
         setIsLoggedIn(res.isLoggedIn);
-        console.debug({ res })
         if (!res.isLoggedIn) setSubmitText('Login and Submit');
       })
   }, []);
