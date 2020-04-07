@@ -9,6 +9,7 @@ import LoginAndSubmitBtn from './LoginAndSubmitBtn';
 import './AvailabilityReport.css';
 
 import stockStatuses from '../../constants/json/stockStatuses.json';
+import { useState } from 'react';
 
 // FIXME: import from common local config
 const DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED = 3;
@@ -21,8 +22,7 @@ const rules = [{ required: false }];
 
 const AvailabilityReport = () => {
   const [ form ] = useForm();
-  
-  // get location effect?
+  const [items, setItems] = useState([]);
 
   const onFinishHander = useCallback((values) => {
     console.debug('onFinish');
@@ -53,6 +53,12 @@ const AvailabilityReport = () => {
     });
 
     form.setFieldsValue({essentialsStockStatus});
+
+    fetch('/api/v1/items')
+      .then(res => res.json())
+      .then((res) => {
+        console.debug({ items: res });
+      })
   }, []);
 
   return (
@@ -111,7 +117,7 @@ const AvailabilityReport = () => {
                           fieldKey={[field.fieldKey, "essential"]}
                           rules={rules}
                         >
-                          <EssentialsSelect />
+                          <EssentialsSelect items={items} />
                         </Item>
                       
                         <Item

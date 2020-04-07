@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 
-import essentials from '../../constants/json/essentials.json';
+// import essentials from '../../constants/json/essentials.json';
 
 const { OptGroup, Option } = Select;
 
@@ -11,11 +11,11 @@ const renderOptGroup = (group) => (
   </OptGroup>
 );
 
-const EssentialsSelect = () => {
+const EssentialsSelect = ({ items }) => {
   return (
     <Select placeholder="Select Item">
       {
-        Object.entries(essentials).map(group => renderOptGroup(group))
+        Object.entries(items).map(group => renderOptGroup(group))
       }
   </Select>
   )
