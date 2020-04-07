@@ -12,30 +12,10 @@ function getBase64(file) {
   });
 }
 
-const FILE_LIST = [
-  {
-    uid: '-1',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://c8.alamy.com/comp/GP025K/indian-food-market-in-bangalore-karnataka-india-GP025K.jpg',
-  },
-  {
-    uid: '-4',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://media.istockphoto.com/photos/grocery-shop-in-little-india-singapore-picture-id919763140',
-  },
-  {
-    uid: '-5',
-    name: 'image.png',
-    status: 'error',
-  },
-];
-
-const PhotoInput = () => {
+const PhotoInput = ({ form }) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
-  const [fileList, setFileList] = useState(FILE_LIST);
+  const [fileList, setFileList] = useState([]);
 
 
   const handleCancel = () => setPreviewVisible(false);
@@ -49,7 +29,13 @@ const PhotoInput = () => {
     setPreviewVisible(true);
   };
 
-  const handleChange = ({ fileList }) => setFileList(fileList);
+  const handleChange = ({ fileList }) => { 
+    const photos = fileList
+      .filter(file => file.status === 'done')
+      .map(({ response: { photo_id } }) => photo_id);
+    form.setFieldsValue({ photos });
+    setFileList(fileList);
+  }
 
   const uploadButton = (
     <div>
@@ -61,7 +47,7 @@ const PhotoInput = () => {
   return (
     <div className="clearfix">
       <Upload
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        action="/api/v1/photos"
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}

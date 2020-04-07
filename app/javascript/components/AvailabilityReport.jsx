@@ -26,7 +26,7 @@ const AvailabilityReport = () => {
 
   const onFinishHander = useCallback((values) => {
     console.debug('onFinish');
-    fetch('/api/availability_reports', {
+    fetch('/api/v1/reports', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -98,7 +98,7 @@ const AvailabilityReport = () => {
             label="Store photos"
             rules={[{ required: false, message: 'Please add store photos' }]}
           >
-            <PhotoInput />
+            <PhotoInput form={form} />
           </Item>
           <List name="essentialsStockStatus">
             {(fields, { add, remove }) => {
