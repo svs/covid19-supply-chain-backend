@@ -1,0 +1,3 @@
+class PhotoUploader < Shrine
+
+end
