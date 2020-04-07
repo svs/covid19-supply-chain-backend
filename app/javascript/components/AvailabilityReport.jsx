@@ -25,34 +25,34 @@ const AvailabilityReport = () => {
   // get location effect?
 
   const onFinishHander = useCallback((values) => {
-    console.debug('onFinish');
-    fetch('/api/v1/reports', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form.getFieldsValue(true)) 
-    })
-    .then(res => res.json())
-    .then(res => {
+    // console.debug('onFinish');
+    // fetch('/api/v1/reports', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(form.getFieldsValue(true)) 
+    // })
+    // .then(res => res.json())
+    // .then(res => {
       console.debug({ res });
       // form.resetFields();
-    })
+    // })
   }, []);
 
   useEffect(() => {
-    let essentialsStockStatus = [];
+    let availabilities_attributes = [];
     const defaultOpenRows = new Array(DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED).fill(null);
 
     defaultOpenRows.forEach((_, i) => {
-      essentialsStockStatus.push({
-        essential: '',
-        stockStatus: ''
+      availabilities_attributes.push({
+        item: undefined,
+        availability: undefined
       });
     });
 
-    form.setFieldsValue({essentialsStockStatus});
+    form.setFieldsValue({availabilities_attributes});
   }, []);
 
   return (
@@ -72,7 +72,7 @@ const AvailabilityReport = () => {
         >
           <Item
             className="AvailabilityReport__store-name"
-            name="storeName" 
+            name="store_name" 
             label="Store Name" 
             rules={[{ required: true, message: 'Please input the store name!'}]}
           >
@@ -84,7 +84,7 @@ const AvailabilityReport = () => {
             label="Store Location"
             rules={[{ required: false, message: 'Please add store location' }]}
           >
-            <LocationInput />
+            <LocationInput form={form}/>
           </Item>
           <Item
             className="AvailabilityReport__photo-input"
@@ -94,7 +94,7 @@ const AvailabilityReport = () => {
           >
             <PhotoInput form={form} />
           </Item>
-          <List name="essentialsStockStatus">
+          <List name="availabilities_attributes">
             {(fields, { add, remove }) => {
               /**
                * `fields` internal fill with `name`, `key`, `fieldKey` props.
@@ -107,21 +107,21 @@ const AvailabilityReport = () => {
                     <Item label={`Item ${index + 1}`} className="AvailabilityReport__list-item">
                       <Space size="large">
                         <Item
-                          name={[field.name, "essential"]}
-                          fieldKey={[field.fieldKey, "essential"]}
+                          name={[field.name, "item"]}
+                          fieldKey={[field.fieldKey, "item"]}
                           rules={rules}
                         >
                           <EssentialsSelect />
                         </Item>
                       
                         <Item
-                          name={[field.name, "stockStatus"]}
-                          fieldKey={[field.fieldKey, "stockStatus"]}
+                          name={[field.name, "availability"]}
+                          fieldKey={[field.fieldKey, "availability"]}
                           rules={rules}
                         >
                           <Select placeholder="Select Availability" style={{ width: '215px' }}>
                             {stockStatuses.map(s => (
-                              <Option value={s} key={s}>{s}</Option>
+                              <Option value={s.key} key={s.key}>{s.value}</Option>
                             ))}
                           </Select>
                         </Item>
