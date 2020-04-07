@@ -1,6 +1,8 @@
 module Api
   module V1
     class AvailabilityReportsController < ApiController
+      before_action :authenticate_user!
+
       def create
         @report = AvailabilityReportCreator.new(create_params).create
         if @report.save
@@ -12,13 +14,12 @@ module Api
       end
 
       def create_params
-        params.require(:availability_report)
-              .permit(:store_name,
+        params.permit(:store_name,
                       :lat,
                       :lon,
-                      :user_id,
                       photos: [],
                       availabilities_attributes: %i[item availability])
+              .merge(:user => current_user)
       end
     end
   end
