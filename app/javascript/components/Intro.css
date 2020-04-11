@@ -9,10 +9,14 @@
 }
 
 .Intro__carousel {
-  --height: 250px;
+  --height: 265px;
 
   height: var(--height);
   margin-top: var(--gutter-size);
+}
+
+.Intro__carousel .slick-slide {
+  overflow: hidden;
 }
 
 .Intro__item {

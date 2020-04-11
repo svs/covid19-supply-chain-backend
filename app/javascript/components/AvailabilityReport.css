@@ -28,14 +28,9 @@
 }
 
 /* Sorry had to write this :P */
-.AvailabilityReport__list-item > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content {
+.AvailabilityReport__list-item > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-space {
   display: flex;
   align-items: center;
-}
-
-.AvailabilityReport__remove-icon {
-  position: relative;
-  top: -15px;
 }
 
 .AvailabilityReport__add-btn,
@@ -44,6 +39,22 @@
   width: var(--label-size);
   display: block !important;
   margin-bottom: var(--gutter-size);
+}
+
+@media screen and (max-width: 580px) {
+  .AvailabilityReport__list-item > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-space {
+    flex-wrap: wrap;
+  }
+
+  .AvailabilityReport__add-btn,
+  .AvailabilityReport__submit-btn {
+    margin-left: 0;
+  }
+}
+
+.AvailabilityReport__remove-icon {
+  position: relative;
+  top: -15px;
 }
 
 .AvailabilityReport__form {

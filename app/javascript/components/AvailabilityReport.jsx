@@ -93,16 +93,10 @@ const AvailabilityReport = () => {
             <PhotoInput form={form} />
           </Item>
           <List name="availabilities_attributes">
-            {(fields, { add, remove }) => {
-              /**
-               * `fields` internal fill with `name`, `key`, `fieldKey` props.
-               * You can extends this into sub field to support multiple dynamic fields.
-               */
-
-              return (
+            {(fields, { add, remove }) => (
                 <>
                   {fields.map((field, index) => (
-                    <Item label={`Item ${index + 1}`} key={field.fieldKey} rules={[{ required: true }]} className="AvailabilityReport__list-item">
+                    <Item label={`Item ${index + 1}`} key={field.key} rules={[{ required: true }]} className="AvailabilityReport__list-item">
                       <Space size="large">
                         <Item
                           name={[field.name, "item"]}
@@ -144,8 +138,8 @@ const AvailabilityReport = () => {
                     <PlusOutlined /> Add Item
                   </Button>
                 </>
-              );
-            }}
+              )
+            }
           </List>
           <LoginAndSubmitBtn form={form} />
         </Form>

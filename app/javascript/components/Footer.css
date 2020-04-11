@@ -18,4 +18,9 @@
   .Footer__container > * {
     flex-basis: 100%;
   }
+
+  .Footer__container .ant-btn {
+    padding-left: 0;
+    text-align: left;
+  }
 }
