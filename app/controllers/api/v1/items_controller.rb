@@ -2,7 +2,7 @@ module Api
   module V1
     class ItemsController < ApiController
       def index
-        Item.all
+        render json: Item.all
       end
     end
   end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'photos', to: 'photos#create'
       post 'reports', to: 'availability_reports#create'
-      resources :items, only: [:index], format: :json
+      get 'items', to: 'items#index'
     end
   end
 
