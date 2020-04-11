@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { Typography, Form, Input, Select, Button, Row, Col, Space } from 'antd';
 import { MinusCircleTwoTone, PlusOutlined } from '@ant-design/icons';
 
-import EssentialsSelect from './EssentialsSelect';
+import EssentialsSelect, { useItems } from './EssentialsSelect';
 import LocationInput from './LocationInput';
 import PhotoInput from './PhotoInput';
 import LoginAndSubmitBtn from './LoginAndSubmitBtn';
@@ -18,11 +18,9 @@ const { Title, Paragraph } = Typography;
 const { useForm, Item, List } = Form;
 const { Option } = Select;
 
-const rules = [{ required: false }];
-
 const AvailabilityReport = () => {
   const [ form ] = useForm();
-  const [items, setItems] = useState([]);
+  const items = useItems();
 
   const onFinishHander = useCallback((values) => {
     // console.debug('onFinish');
@@ -53,12 +51,6 @@ const AvailabilityReport = () => {
     });
 
     form.setFieldsValue({availabilities_attributes});
-
-    fetch('/api/v1/items')
-      .then(res => res.json())
-      .then((res) => {
-        console.debug({ items: res });
-      })
   }, []);
 
   return (
@@ -88,7 +80,7 @@ const AvailabilityReport = () => {
             className="AvailabilityReport__store-location"
             name="location"
             label="Store Location"
-            rules={[{ required: false, message: 'Please add store location' }]}
+            rules={[{ required: true, message: 'Please add store location' }]}
           >
             <LocationInput form={form}/>
           </Item>
@@ -110,12 +102,12 @@ const AvailabilityReport = () => {
               return (
                 <>
                   {fields.map((field, index) => (
-                    <Item label={`Item ${index + 1}`} className="AvailabilityReport__list-item">
+                    <Item label={`Item ${index + 1}`} key={field.fieldKey} rules={[{ required: true }]} className="AvailabilityReport__list-item">
                       <Space size="large">
                         <Item
                           name={[field.name, "item"]}
                           fieldKey={[field.fieldKey, "item"]}
-                          rules={rules}
+                          rules={[{ required: true }]}
                         >
                           <EssentialsSelect items={items} />
                         </Item>
@@ -123,7 +115,7 @@ const AvailabilityReport = () => {
                         <Item
                           name={[field.name, "availability"]}
                           fieldKey={[field.fieldKey, "availability"]}
-                          rules={rules}
+                          rules={[{ required: true }]}
                         >
                           <Select placeholder="Select Availability" style={{ width: '215px' }}>
                             {stockStatuses.map(s => (
