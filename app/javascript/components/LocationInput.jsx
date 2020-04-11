@@ -3,11 +3,10 @@ import { Input } from 'antd';
 import { AimIcon } from './Icons';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import './LocationInput.css';
 
 const LocationInput = ({ form }) => {
   const [permissionStatus, setPermissionStatus] = useState('');
-  const [location, setLocation] = useState(null);
   const [displayValue, setDisplayValue] = useState();
 
   // TODO: Add watch for location?
@@ -50,7 +49,10 @@ const LocationInput = ({ form }) => {
   }
 
   return (
-    <Input value={displayValue} onFocusCapture={onFocusHandler} addonAfter={<AimIcon style={{ width: '16px', height: '16px', position: 'relative', top: '-2px' }} />} placeholder="Detect Location" />
+    <div className="LocationInput">
+      <Input value={displayValue} onFocusCapture={onFocusHandler} placeholder="Detect Location" />
+      <AimIcon className="LocationInput__icon" onClick={onFocusHandler} />
+    </div>
   )
 };
 
