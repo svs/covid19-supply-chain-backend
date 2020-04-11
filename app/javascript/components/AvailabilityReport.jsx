@@ -74,7 +74,7 @@ const AvailabilityReport = () => {
             label="Store Name" 
             rules={[{ required: true, message: 'Please input the store name!'}]}
           >
-            <Input size="middle" placeholder="Enter name (Optional)" />
+            <Input size="middle" placeholder="Enter name" />
           </Item>
           <Item
             className="AvailabilityReport__store-location"
