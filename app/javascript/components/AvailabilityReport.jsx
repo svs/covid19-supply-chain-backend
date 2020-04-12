@@ -38,6 +38,7 @@ const AvailabilityReport = () => {
         message.success("Thank you for your submission. You're a Hero!");
         form.resetFields();
         addItems();
+        localStorage.removeItem('availabilityReport');
     } else {
         message.error(res.message);
       }
