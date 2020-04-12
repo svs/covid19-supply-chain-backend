@@ -18,5 +18,6 @@
 #
 class Photo < ApplicationRecord
   include PhotoUploader::Attachment.new(:image)
+  validates_presence_of :image
   belongs_to :availability_report, optional: true
 end
