@@ -37,8 +37,8 @@ const AvailabilityReport = () => {
       if (res.success) {
         message.success("Thank you for your submission. You're a Hero!");
         form.resetFields();
-        addItems();
         localStorage.removeItem('availabilityReport');
+        addItems();
     } else {
         message.error(res.message);
       }
@@ -47,16 +47,20 @@ const AvailabilityReport = () => {
 
   const addItems = () => {
     let availabilities_attributes = [];
-    const defaultOpenRows = new Array(DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED).fill(null);
+    const availabilityReport = localStorage.getItem('availabilityReport');
+    if (!availabilityReport) {
+      const defaultOpenRows = new Array(DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED).fill(null);
 
-    defaultOpenRows.forEach((_, i) => {
-      availabilities_attributes.push({
-        item_id: undefined,
-        availability: undefined
+      defaultOpenRows.forEach((_, i) => {
+        availabilities_attributes.push({
+          item_id: undefined,
+          availability: undefined
+        });
       });
-    });
 
-    form.setFieldsValue({availabilities_attributes});
+      form.setFieldsValue({availabilities_attributes});
+    } 
+    
   }
 
   useEffect(() => {
