@@ -50,6 +50,10 @@
   .AvailabilityReport__submit-btn {
     margin-left: 0;
   }
+
+  .AvailabilityReport .ant-typography {
+    text-align: left;
+  }
 }
 
 .AvailabilityReport__remove-icon {
