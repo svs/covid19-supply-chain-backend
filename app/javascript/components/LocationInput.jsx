@@ -53,7 +53,7 @@ const LocationInput = ({ form }) => {
         <AimIcon className="LocationInput__icon" onClick={onFocusHandler} />
       </div>
       {permissionStatus === 'denied' && isChrome() && (
-        <Text type="danger">Please allow this location for this site from this url <Text strong>chrome://settings/content/location</Text></Text>
+        <Text type="danger">Please allow this location for this site from this url <Text strong>Settings > Site settings > Location</Text></Text>
       )}
       {permissionStatus === 'denied' && isFirefox() && (
         <Text type="danger">Please allow this location for this site from this site from <Text strong>Tools > Page Info > Permissions</Text></Text>
