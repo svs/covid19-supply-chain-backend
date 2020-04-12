@@ -13,15 +13,15 @@ const LoginAndSubmitBtn = ({ form }) => {
         setIsLoggedIn(res.isLoggedIn);
         if (res.isLoggedIn) {
           const values = JSON.parse(localStorage.getItem('availabilityReport'));
-          form.setFieldsValue(values);
+          if (values) {
+            form.setFieldsValue(values);
+          }
           const isPageRedirectedFromLogin = !!form.getFieldValue('store_name');
           // Note: this implementation assumes that if store name is not undefined on mount 
           // then the user has been redirected after login and has already filled form before submit
-          // it avoids user having to click the submit button again. This flow is favorable at the moment 
-          // than forcing user to login ever before he fills the form.
+          // So it scrolls user to submit button
           if (isPageRedirectedFromLogin) {
-            form.submit();
-          }
+            window.scrollTo(0, document.body.scrollHeight)          }
         }
       })
   }, []);
