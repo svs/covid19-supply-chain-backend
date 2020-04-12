@@ -14,12 +14,14 @@ module Api
       end
 
       def create_params
-        params.permit(:store_name,
+        params.require(:availability_report)
+              .permit(:store_name,
                       :lat,
+                      # :user_id,
                       :lon,
                       photos: [],
-                      availabilities_attributes: %i[item availability])
-              .merge(:user => current_user)
+                      availabilities_attributes: %i[item_id availability])
+              .merge(:user_id => current_user.id)
       end
     end
   end

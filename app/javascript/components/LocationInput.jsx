@@ -6,27 +6,15 @@ import { useEffect } from 'react';
 import './LocationInput.css';
 
 const LocationInput = ({ form }) => {
-  const [permissionStatus, setPermissionStatus] = useState('');
+  const [permissionStatus, setPermissionStatus] = useState();
   const [displayValue, setDisplayValue] = useState();
 
-  // TODO: Add watch for location?
   useEffect(() => {
-    navigator.permissions.query({ name:'geolocation' }).then(function(result) {
-      setPermissionStatus(result.state);
-
-      result.onchange = function() {
-        setPermissionStatus(result.state);
-      }
-    });
-  }, [])
-
-  useEffect(() => {
-    if (permissionStatus === 'granted') {
-      navigator.geolocation.getCurrentPosition(onPermissionGrant, () => setPermissionStatus('denied'), console.debug);
-    }
+    console.debug({ permissionStatus })
   }, [permissionStatus]);
 
   const onPermissionGrant = ({ coords: { latitude, longitude }}) => {
+    console.debug('onPermissionGrant');
     setPermissionStatus('granted');
     fetch(`https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=234862071874572865916x5343`)
       .then(res => res.json())
@@ -36,8 +24,8 @@ const LocationInput = ({ form }) => {
 
   const onFocusHandler = () => {
     navigator.permissions.query({ name:'geolocation' }).then(function(result) {
-      if (result.state == 'prompt') {
-        navigator.geolocation.getCurrentPosition(onPermissionGrant, () => setPermissionStatus('denied'), console.debug);
+      if (['granted', 'prompt'].includes(result.state)) {
+        navigator.geolocation.getCurrentPosition(onPermissionGrant, () => setPermissionStatus('denied'), {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
       }
 
       setPermissionStatus(result.state);

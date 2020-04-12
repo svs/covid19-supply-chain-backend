@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Typography, Form, Input, Select, Button, Row, Col, Space } from 'antd';
+import { Typography, Form, Input, Select, Button, Row, Col, Space, message } from 'antd';
 import { MinusCircleTwoTone, PlusOutlined } from '@ant-design/icons';
 
 import EssentialsSelect, { useItems } from './EssentialsSelect';
@@ -24,33 +24,42 @@ const AvailabilityReport = () => {
 
   const onFinishHander = useCallback((values) => {
     // console.debug('onFinish');
-    // fetch('/api/v1/reports', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(form.getFieldsValue(true)) 
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-      console.debug({ res });
-      // form.resetFields();
-    // })
+    fetch('/api/v1/reports', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ availability_report: { ...form.getFieldsValue(true) } }) 
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) {
+        message.success("Thank you for your submission. You're a Hero!");
+        form.resetFields();
+        addItems();
+    } else {
+        message.error(res.message);
+      }
+    })
   }, []);
 
-  useEffect(() => {
+  const addItems = () => {
     let availabilities_attributes = [];
     const defaultOpenRows = new Array(DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED).fill(null);
 
     defaultOpenRows.forEach((_, i) => {
       availabilities_attributes.push({
-        item: undefined,
+        item_id: undefined,
         availability: undefined
       });
     });
 
     form.setFieldsValue({availabilities_attributes});
+  }
+
+  useEffect(() => {
+    addItems();
   }, []);
 
   return (
@@ -78,11 +87,11 @@ const AvailabilityReport = () => {
           </Item>
           <Item
             className="AvailabilityReport__store-location"
-            name="location"
+            name='lat'
             label="Store Location"
             rules={[{ required: true, message: 'Please add store location' }]}
           >
-            <LocationInput form={form}/>
+            <LocationInput form={form} />
           </Item>
           <Item
             className="AvailabilityReport__photo-input"
@@ -96,11 +105,11 @@ const AvailabilityReport = () => {
             {(fields, { add, remove }) => (
                 <>
                   {fields.map((field, index) => (
-                    <Item label={`Item ${index + 1}`} key={field.key} rules={[{ required: true }]} className="AvailabilityReport__list-item">
+                    <Item label={`Item ${index + 1}`} key={field.key} rules={[{ required: false }]} className="AvailabilityReport__list-item">
                       <Space size="large">
                         <Item
-                          name={[field.name, "item"]}
-                          fieldKey={[field.fieldKey, "item"]}
+                          name={[field.name, "item_id"]}
+                          fieldKey={[field.fieldKey, "item_id"]}
                           rules={[{ required: true }]}
                         >
                           <EssentialsSelect items={items} />
