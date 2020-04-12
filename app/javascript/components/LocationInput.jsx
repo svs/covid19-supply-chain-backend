@@ -1,17 +1,25 @@
 import React from 'react';
-import { Input } from 'antd';
+import { Input, Typography, Button } from 'antd';
 import { AimIcon } from './Icons';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import './LocationInput.css';
 
+const { Text } = Typography;
+
 const LocationInput = ({ form }) => {
   const [permissionStatus, setPermissionStatus] = useState();
   const [displayValue, setDisplayValue] = useState();
 
-  useEffect(() => {
-    console.debug({ permissionStatus })
-  }, [permissionStatus]);
+  // useEffect(() => {
+  //   console.debug({ permissionStatus })
+  //   if (permissionStatus === 'denied') {
+  //     form.setFields([{
+  //       name: 'lat',
+  //       errors: [`Store location is a must to track supply chain.`] 
+  //     }])
+  //   }
+  // }, [permissionStatus]);
 
   const onPermissionGrant = ({ coords: { latitude, longitude }}) => {
     console.debug('onPermissionGrant');
@@ -36,11 +44,21 @@ const LocationInput = ({ form }) => {
     });
   }
 
+  const isChrome = () => /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  const isFirefox = () => navigator.userAgent.indexOf("Firefox") != -1;
   return (
-    <div className="LocationInput">
-      <Input value={displayValue} onFocusCapture={onFocusHandler} placeholder="Detect Location" />
-      <AimIcon className="LocationInput__icon" onClick={onFocusHandler} />
-    </div>
+    <>
+      <div className="LocationInput">
+        <Input value={displayValue} onFocusCapture={onFocusHandler} placeholder="Detect Location" />
+        <AimIcon className="LocationInput__icon" onClick={onFocusHandler} />
+      </div>
+      {permissionStatus === 'denied' && isChrome() && (
+        <Text type="danger">Please allow this location for this site from this url <Text strong>chrome://settings/content/location</Text></Text>
+      )}
+      {permissionStatus === 'denied' && isFirefox() && (
+        <Text type="danger">Please allow this location for this site from this site from <Text strong>Tools > Page Info > Permissions</Text></Text>
+      )}
+    </>
   )
 };
 
