@@ -342,6 +342,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
+  marcel (~> 0.3.3)
   omniauth-twitter
   pg
   pry-rails
