@@ -2,7 +2,7 @@ module Api
   module V1
     class PhotosController < ApiController
       def create
-        photo = Photo.create!(image: photo_params[:image])
+        photo = Photo.create!(image: photo_params[:file])
         if photo
           render json: { success: true, photo_id: photo.id, photo_url: photo.image_url }
         else
@@ -13,7 +13,7 @@ module Api
       private
 
       def photo_params
-        params.permit(:image)
+        params.permit(:file)
       end
     end
   end
