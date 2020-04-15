@@ -30,6 +30,13 @@ const PhotoInput = ({ form, value }) => {
   };
 
   useEffect(() => {
+    console.debug({ value })
+    if (!value) {
+      setFileList([]);
+    }
+  }, [value]);
+
+  useEffect(() => {
     const values = JSON.parse(localStorage.getItem('availabilityReport'));
     const photoIdUrlMap = JSON.parse(localStorage.getItem('photoIdUrlMap'));
     if (values && values.photos) {
@@ -41,7 +48,7 @@ const PhotoInput = ({ form, value }) => {
       }));
       setFileList(derivedFileList);
     }
-  },[value])
+  },[])
 
   useEffect(() => {
     const derivedPhotoIdUrlMap = localStorage.getItem('photoIdUrlMap') ? JSON.parse(localStorage.getItem('photoIdUrlMap')) : {};
