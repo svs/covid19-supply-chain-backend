@@ -11,22 +11,31 @@ const LocationInput = ({ form }) => {
   const [permissionStatus, setPermissionStatus] = useState();
   const [displayValue, setDisplayValue] = useState();
 
-  // useEffect(() => {
-  //   console.debug({ permissionStatus })
-  //   if (permissionStatus === 'denied') {
-  //     form.setFields([{
-  //       name: 'lat',
-  //       errors: [`Store location is a must to track supply chain.`] 
-  //     }])
-  //   }
-  // }, [permissionStatus]);
+  useEffect(() => {
+    const availabilityReport = localStorage.getItem('availabilityReport') ? JSON.parse(localStorage.getItem('availabilityReport')) : null;
+    if (availabilityReport && availabilityReport.lat && availabilityReport.lon) {
+      addDisplayValue({ latitude: availabilityReport.lat, longitude: availabilityReport.lon });
+    }
+  }, [])
+
+  useEffect(() => {
+    console.debug({ permissionStatus })
+    // if (permissionStatus === 'denied') {
+    //   form.setFields([{
+    //     name: 'lat',
+    //     errors: [`Store location is a must to track supply chain.`] 
+    //   }])
+    // }
+  }, [permissionStatus]);
+
+  const addDisplayValue = ({ latitude, longitude }) => fetch(`https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=234862071874572865916x5343`)
+    .then(res => res.json())
+    .then((res) => setDisplayValue(`${res.staddress}, ${res.region}`))
 
   const onPermissionGrant = ({ coords: { latitude, longitude }}) => {
     console.debug('onPermissionGrant');
     setPermissionStatus('granted');
-    fetch(`https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=234862071874572865916x5343`)
-      .then(res => res.json())
-      .then((res) => setDisplayValue(`${res.staddress}, ${res.region}`))
+    addDisplayValue({ latitude, longitude });
     form.setFieldsValue({ lat: latitude, lon: longitude });
   }
 

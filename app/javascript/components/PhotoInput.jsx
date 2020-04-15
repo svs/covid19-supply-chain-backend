@@ -2,6 +2,7 @@ import React from 'react';
 import { Upload, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -12,11 +13,10 @@ function getBase64(file) {
   });
 }
 
-const PhotoInput = ({ form }) => {
+const PhotoInput = ({ form, value }) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState([]);
-
 
   const handleCancel = () => setPreviewVisible(false);
 
@@ -29,10 +29,34 @@ const PhotoInput = ({ form }) => {
     setPreviewVisible(true);
   };
 
+  useEffect(() => {
+    const values = JSON.parse(localStorage.getItem('availabilityReport'));
+    const photoIdUrlMap = JSON.parse(localStorage.getItem('photoIdUrlMap'));
+    if (values && values.photos) {
+      const derivedFileList = values.photos.map(id => ({
+        status: 'done',
+        uid: `${id}`,
+        name: photoIdUrlMap[id],
+        url: photoIdUrlMap[id]
+      }));
+      setFileList(derivedFileList);
+    }
+  },[value])
+
+  useEffect(() => {
+    const derivedPhotoIdUrlMap = localStorage.getItem('photoIdUrlMap') ? JSON.parse(localStorage.getItem('photoIdUrlMap')) : {};
+    fileList
+      .filter(file => file.status === 'done' && file.response)
+      .forEach(({ response: { photo_id, photo_url } }) => {
+        derivedPhotoIdUrlMap[photo_id] = photo_url;
+      });
+    if (Object.keys(derivedPhotoIdUrlMap).length)localStorage.setItem('photoIdUrlMap', JSON.stringify(derivedPhotoIdUrlMap));
+  }, [fileList]);
+
   const handleChange = ({ fileList }) => { 
     const photos = fileList
       .filter(file => file.status === 'done')
-      .map(({ response: { photo_id } }) => photo_id);
+      .map(({ uid, response }) => response ? response.photo_id : parseInt(uid));
     form.setFieldsValue({ photos });
     setFileList(fileList);
   }

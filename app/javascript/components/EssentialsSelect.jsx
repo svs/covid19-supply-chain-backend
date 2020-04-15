@@ -33,7 +33,11 @@ export const useItems = () => {
 }
 
 const EssentialsSelect = ({ items, ...props }) => {
-  const onChangeHandler = useCallback(console.debug);
+  const [value, setValue] = useState();
+
+  useEffect(() => {
+    if (props.value && Object.keys(items).length) setValue(props.value);
+  }, [items, props]);
 
   return (
     <TreeSelect
@@ -42,6 +46,7 @@ const EssentialsSelect = ({ items, ...props }) => {
       treeDefaultExpandAll
       showSearch
       {...props}
+      value={value}
       // onChange={onChangeHandler}
     >
       {

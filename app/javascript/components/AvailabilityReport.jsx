@@ -37,7 +37,7 @@ const AvailabilityReport = () => {
       if (res.success) {
         message.success("Thank you for your submission. You're a Hero!");
         form.resetFields();
-        localStorage.removeItem('availabilityReport');
+        localStorage.clear();
         addItems();
     } else {
         message.error(res.message);
@@ -47,8 +47,8 @@ const AvailabilityReport = () => {
 
   const addItems = () => {
     let availabilities_attributes = [];
-    const availabilityReport = localStorage.getItem('availabilityReport');
-    if (!availabilityReport) {
+    const availabilityReport = localStorage.getItem('availabilityReport') ? JSON.parse(localStorage.getItem('availabilityReport')) : null;
+    if (!availabilityReport || (availabilityReport && !availabilityReport.availabilities_attributes.length)) {
       const defaultOpenRows = new Array(DEFAULT_NUMBER_OF_ESSENTIAL_ROWS_DISPLAYED).fill(null);
 
       defaultOpenRows.forEach((_, i) => {
@@ -60,7 +60,6 @@ const AvailabilityReport = () => {
 
       form.setFieldsValue({availabilities_attributes});
     } 
-    
   }
 
   useEffect(() => {
@@ -131,14 +130,16 @@ const AvailabilityReport = () => {
                             ))}
                           </Select>
                         </Item>
-                        <MinusCircleTwoTone
-                          color="red"
-                          twoToneColor="#f5222d"
-                          className="AvailabilityReport__remove-icon"
-                          onClick={() => {
-                            remove(field.name);
-                          }}
-                        />
+                        {fields.length > 1 && (
+                          <MinusCircleTwoTone
+                            color="red"
+                            twoToneColor="#f5222d"
+                            className="AvailabilityReport__remove-icon"
+                            onClick={() => {
+                              remove(field.name);
+                            }}
+                          />
+                        )}
                       </Space>
                     </Item>
                   ))}

@@ -14,7 +14,13 @@ const LoginAndSubmitBtn = ({ form }) => {
         if (res.isLoggedIn) {
           const values = JSON.parse(localStorage.getItem('availabilityReport'));
           if (values) {
-            form.setFieldsValue(values);
+            if (values.availabilities_attributes.filter(attr => attr.item_id).length)
+              form.setFieldsValue(values)
+            else {
+              const { availabilities_attributes, ...rest } = values;
+              form.setFieldsValue(rest);
+            }
+
           }
           const isPageRedirectedFromLogin = !!form.getFieldValue('store_name');
           // Note: this implementation assumes that if store name is not undefined on mount 
@@ -27,7 +33,12 @@ const LoginAndSubmitBtn = ({ form }) => {
   }, []);
 
   const onLoginClick = () => {
-    localStorage.setItem('availabilityReport', JSON.stringify(form.getFieldsValue(true)));
+    const formValues = form.getFieldsValue(true);
+    const derivedFormValues = {
+      ...formValues,
+      availabilities_attributes: formValues.availabilities_attributes.filter(attr => !!attr.item_id)
+    }
+    localStorage.setItem('availabilityReport', JSON.stringify(derivedFormValues));
     window.location.href = '/users/auth/twitter';
   }
 
