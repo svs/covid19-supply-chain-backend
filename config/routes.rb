@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   get '*page', to: 'static#index', constraints: ->(req) do
     !req.xhr? && req.format.html?
   end
-  post '/api/availability_reports', to: 'availability_reports#create'
+
+  namespace :api do
+    namespace :v1 do
+      post 'photos', to: 'photos#create'
+      post 'reports', to: 'availability_reports#create'
+    end
+  end
+  # post '/api/availability_reports', to: 'availability_reports#create'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
