@@ -1,0 +1,67 @@
+.AvailabilityReport {
+  padding: var(--gutter-size);
+  background-color:#fafafa !important;
+}
+
+.AvailabilityReport__container {
+  --label-size: 215px;
+
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.AvailabilityReport .ant-form-item-control-input-content {
+  text-align: left;
+}
+
+.AvailabilityReport__list-item {
+  margin-bottom: 0 !important;
+}
+
+.AvailabilityReport__container .ant-form-item-label,
+.AvailabilityReport__container .ant-select,
+.AvailabilityReport__container .ant-form-item-control-input-content > input,
+.AvailabilityReport__container .ant-input-group-wrapper
+ {
+  width: var(--label-size) !important;
+}
+
+/* Sorry had to write this :P */
+.AvailabilityReport__list-item > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-space {
+  display: flex;
+  align-items: center;
+}
+
+.AvailabilityReport__add-btn,
+.AvailabilityReport__submit-btn {
+  margin-left: var(--label-size);
+  width: var(--label-size);
+  display: block !important;
+  margin-bottom: var(--gutter-size);
+}
+
+@media screen and (max-width: 580px) {
+  .AvailabilityReport__list-item > .ant-form-item-control > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-space {
+    flex-wrap: wrap;
+  }
+
+  .AvailabilityReport__add-btn,
+  .AvailabilityReport__submit-btn {
+    margin-left: 0;
+  }
+
+  .AvailabilityReport .ant-typography {
+    text-align: left;
+  }
+}
+
+.AvailabilityReport__remove-icon {
+  position: relative;
+  top: -15px;
+}
+
+.AvailabilityReport__form {
+  text-align: left;
+  padding-top: var(--gutter-size) !important;
+}

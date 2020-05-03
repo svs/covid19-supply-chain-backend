@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html class="antialiased">
   <head>
-    <title>CovidBackend</title>
+    <title>Covid19 Supply Chain Tracker</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <%# Not using this at the moment %>
+    <%# <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> %>
 
   </head>
 
   <body>
-    <section>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </section>
-
     <%= yield %>
   </body>
 </html>

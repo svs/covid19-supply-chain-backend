@@ -1,0 +1,34 @@
+.Intro {
+  padding: var(--gutter-size);
+  background-color: #f0f0f0;
+}
+
+.Intro__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.Intro__carousel {
+  --height: 265px;
+
+  height: var(--height);
+  margin-top: var(--gutter-size);
+}
+
+.Intro__carousel .slick-slide {
+  overflow: hidden;
+}
+
+.Intro__item {
+  height: var(--height);
+  text-align: center;
+} 
+
+.Intro__carousel .slick-dots li button {
+  height: 5px;
+  background-color: #91d5ff !important;
+}
+
+.Intro__carousel .slick-dots li.slick-active button {
+  background-color: #1890ff !important;
+}

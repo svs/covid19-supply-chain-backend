@@ -1,0 +1,20 @@
+html,
+body,
+div[data-react-class="App"] {
+  margin: 0;
+  height: 100%;
+  min-width: 360px;
+}
+
+:root {
+  --gutter-size: 20px;
+  --max-width: 800px;
+}
+
+/* rails alerts */
+.notice,
+.alert {
+  margin: 0;
+}
+
+ 

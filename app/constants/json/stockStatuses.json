@@ -1,0 +1,18 @@
+[
+  {
+    "key": 3,
+    "value": "Well Stocked"
+  },
+  {
+    "key": 2,
+    "value": "In Stock"
+  },
+  {
+    "key": 1,
+    "value": "Limited Stock"
+  },
+  {
+    "key": 0,
+    "value": "Out of Stock"
+  }
+]

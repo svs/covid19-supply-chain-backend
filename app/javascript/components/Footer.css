@@ -1,0 +1,26 @@
+.Footer {
+  background-color:#f0f0f0 !important;
+}
+
+.Footer .Footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 580px) {
+  .Footer__container {
+    flex-wrap: wrap;
+  }
+
+  .Footer__container > * {
+    flex-basis: 100%;
+  }
+
+  .Footer__container .ant-btn {
+    padding-left: 0;
+    text-align: left;
+  }
+}
